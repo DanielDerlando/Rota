@@ -2,6 +2,7 @@ package ExerciseAI;
 
 import AI.AStarSearch;
 import AI.BreadthFirstSearch;
+import AI.GreedySearch;
 import AI.SimulatedAnnealingSearch;
 import Complexity.Heuristic;
 import Complexity.HeuristicRoute;
@@ -71,26 +72,9 @@ public class ExerciseAI {
 
         return a.search(p, h);
     }
-
-    public static String executaBFS(String[] args) {
-        List<Object> linicial = new ArrayList<>();
-        linicial.add(Double.parseDouble(args[0]));
-        linicial.add(Double.parseDouble(args[1]));
-
-        List<Object> lfinal = new ArrayList<>();
-        lfinal.add(Double.parseDouble(args[2]));
-        lfinal.add(Double.parseDouble(args[3]));
-
-        State fState = new StateRoute(lfinal);
-        State iState = new StateRoute(linicial);
-        Problem p = new ProblemRoute(iState, fState);
-        BreadthFirstSearch a = new BreadthFirstSearch(p);
-
-        return a.search();
-    }
-
-    public static String executaSASRoute(String[] args) {
-        List<Object> linicial = new ArrayList<>();
+    
+    public static String executaGreedyRouteS(String[] args){
+         List<Object> linicial = new ArrayList<>();
         linicial.add(Double.parseDouble(args[0]));
         linicial.add(Double.parseDouble(args[1]));
         
@@ -102,13 +86,12 @@ public class ExerciseAI {
         State iState = new StateRoute(linicial);
         Problem p = new ProblemRoute(iState, fState);
         Heuristic h = new HeuristicRoute(fState);
-        SimulatedAnnealingSearch s = new SimulatedAnnealingSearch(p, 2500, fState, h);
-
-        return s.search();
+        GreedySearch s = new GreedySearch();
+        return s.search(p,h);
     }
-
-    public static String executaSASRadar(String[] args) {
-        List<Object> linicial = new ArrayList<>();
+    
+    public static String executaGreedyRadarS(String[] args){
+         List<Object> linicial = new ArrayList<>();
         linicial.add(Double.parseDouble(args[0]));
         linicial.add(Double.parseDouble(args[1]));
         try {
@@ -127,10 +110,69 @@ public class ExerciseAI {
         State iState = new StateRoute(linicial);
         Problem p = new ProblemRoute(iState, fState);
         Heuristic h = new HeuristicWithRadar(fState);
-        SimulatedAnnealingSearch s = new SimulatedAnnealingSearch(p, 2500, fState, h);
-
-        return s.search();
+        GreedySearch s = new GreedySearch();
+        return s.search(p,h);
     }
+    
+    public static String executaBFS(String[] args) {
+        List<Object> linicial = new ArrayList<>();
+        linicial.add(Double.parseDouble(args[0]));
+        linicial.add(Double.parseDouble(args[1]));
+
+        List<Object> lfinal = new ArrayList<>();
+        lfinal.add(Double.parseDouble(args[2]));
+        lfinal.add(Double.parseDouble(args[3]));
+
+        State fState = new StateRoute(lfinal);
+        State iState = new StateRoute(linicial);
+        Problem p = new ProblemRoute(iState, fState);
+        BreadthFirstSearch a = new BreadthFirstSearch(p);
+
+        return a.search();
+    }
+
+//    public static String executaSASRoute(String[] args) {
+//        List<Object> linicial = new ArrayList<>();
+//        linicial.add(Double.parseDouble(args[0]));
+//        linicial.add(Double.parseDouble(args[1]));
+//        
+//        List<Object> lfinal = new ArrayList<>();
+//        lfinal.add(Double.parseDouble(args[2]));
+//        lfinal.add(Double.parseDouble(args[3]));
+//
+//        State fState = new StateRoute(lfinal);
+//        State iState = new StateRoute(linicial);
+//        Problem p = new ProblemRoute(iState, fState);
+//        Heuristic h = new HeuristicRoute(fState);
+//        SimulatedAnnealingSearch s = new SimulatedAnnealingSearch(p, 2500, fState, h);
+//
+//        return s.search();
+//    }
+//
+//    public static String executaSASRadar(String[] args) {
+//        List<Object> linicial = new ArrayList<>();
+//        linicial.add(Double.parseDouble(args[0]));
+//        linicial.add(Double.parseDouble(args[1]));
+//        try {
+//            String myXML = getContentOfURL("http://cbk0.google.com/cbk?output=xml&ll="
+//                    + linicial.get(0) + "," + linicial.get(1));
+//            linicial.add(getXMLRua(myXML));
+//        } catch (IOException ex) {
+//            Logger.getLogger(ExerciseAI.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        
+//        List<Object> lfinal = new ArrayList<>();
+//        lfinal.add(Double.parseDouble(args[2]));
+//        lfinal.add(Double.parseDouble(args[3]));
+//
+//        State fState = new StateRoute(lfinal);
+//        State iState = new StateRoute(linicial);
+//        Problem p = new ProblemRoute(iState, fState);
+//        Heuristic h = new HeuristicWithRadar(fState);
+//        SimulatedAnnealingSearch s = new SimulatedAnnealingSearch(p, 2500, fState, h);
+//
+//        return s.search();
+//    }
 
     private static String getContentOfURL(String path) throws IOException {
         String input;

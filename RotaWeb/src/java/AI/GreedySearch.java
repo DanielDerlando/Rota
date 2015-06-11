@@ -17,7 +17,7 @@ import String.StringTool;
  *
  * @author Daniel
  */
-public class AStarSearch {
+public class GreedySearch {
 
     private Queue frontier;
     private Set<Node> exploredSet;
@@ -25,7 +25,7 @@ public class AStarSearch {
 
     public String search(Problem p, Heuristic h) {
         Node n = new Node(p.getIState(), null, null, 0);
-        ComparatorRouteWithPath cR = new ComparatorRouteWithPath(h);
+        ComparatorRouteWithOnlyHeuristics cR = new ComparatorRouteWithOnlyHeuristics(h);
         frontier = new PriorityQueue(cR);
         frontier.add(n);
         exploredSet = new LinkedHashSet<>();
@@ -54,7 +54,7 @@ public class AStarSearch {
                             frontier.add(child);
                         } else {
                             if (frontier.contains(child)) {
-                                Iterator i = frontier.iterator();
+                                Iterator<Node> i = frontier.iterator();
                                 Node n2;
                                 boolean b = false;
                                 double d, d1;

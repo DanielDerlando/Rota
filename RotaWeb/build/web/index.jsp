@@ -4,7 +4,7 @@
     Author     : Daniel
 --%>
 <%@page import="ExerciseAI.ExerciseAI"%>
-<%String[] args = {"-22.938878","-43.071167","-22.930412","-43.073323"};
+<%String[] args = {"-22.952615"," -43.089559","-22.952388","-43.090959"};
 
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,7 @@
         </script>
         <script src="mapa.js"></script>
     </head>
-    <body onload="init(<%=('\''+ExerciseAI.executaAStarRoute(args)+'\'')%>)">
+    <body onload="init(<%=('\''+ExerciseAI.executaAStarRadar(args)+'\'')%>)">
         <div id="map_canvas" style="width:100%; height:100%"></div>
     </body>
 </html>
