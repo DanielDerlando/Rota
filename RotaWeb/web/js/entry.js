@@ -11,7 +11,9 @@ function initialize() {
 function escolha(){
     if($("option:selected").text()!==""){
         $("#formulario").append("<input type='hidden' value='"+$("option:selected").text()+"' name='funcao'/>");
-        $("table").append("<tr><td colspan='2'align='center'><input type='text' value='Aguarde o caminho carregar' name='msg' disabled/></td></tr>");
+        if($("#msg").length===0){
+            $("table").append("<tr><td colspan='2'align='center'><input type='text' value='Aguarde o caminho carregar' name='msg' disabled id='msg' size='30'/></td></tr>");
+        }        
         $("#formulario").submit();
     }
 }

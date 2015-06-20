@@ -44,7 +44,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" align='center'>
-                            <select onchange="escolha()">
+                            <select id="selecao" onchange="escolha()">
                                 <option> 
                                 </option>
                                 <option>
